@@ -2,16 +2,16 @@
 
 namespace Task_1
 {
-    internal class DArray<datatype>
+    internal class DArray<T>
     {
         private int size;
         private int a;
-        private datatype[] array;
+        private T[] array;
 
         //1. Создаём конструктор без параметров:
         public DArray()
         {
-            array = new datatype[10];
+            array = new T[10];
             size = 10;
         }
 
@@ -20,25 +20,25 @@ namespace Task_1
         {
             if (n <= 0)
             { n = 3; }
-            array = new datatype[n];
+            array = new T[n];
             size = n;
         }
 
         //3. Создаём конструктор, который принимает в качестве параметра длину массива
-        public DArray(datatype[] arr)
+        public DArray(T[] arr)
         {
-            array = new datatype[arr.Length];
+            array = new T[arr.Length];
             size = arr.Length;
         }
 
         //4. Создаём метод, который позволяет добавить элемент в конец массива
-        public void EndAddElements(datatype item)
+        public void EndAddElements(T item)
         {
             Edit(a); array[a] = item; a++;
         }
 
         //5. Создаём метод, который позволяет добавить перечисление в конец массива
-        public void WidthAddElements(datatype[] x)
+        public void WidthAddElements(T[] x)
         {
             int n = 0;
             for (int i = 0; i < x.Length; i++)
@@ -55,7 +55,7 @@ namespace Task_1
             if (size <= v)
             {
                 while (size <= v) { PlusSize(); }
-                datatype[] k = new datatype[size];
+                T[] k = new T[size];
                 for (int i = 0; i < array.Length; i++) { k[i] = array[i]; }
                 array = k;
             }
@@ -67,7 +67,7 @@ namespace Task_1
             if (size <= v)
             {
                 while (size <= v) { PlusSizeArray(count, length); }
-                datatype[] temparray = new datatype[size];
+                T[] temparray = new T[size];
                 for (int i = 0; i < array.Length; i++) { temparray[i] = array[i]; }
                 array = temparray;
             }
@@ -103,7 +103,7 @@ namespace Task_1
             int ind = v+1;
             if (ind<a)
             {
-                datatype[] k = new datatype[size];
+                datatype[] k = new T[size];
                 Array.Copy(array, 0, k, 0, ind);
                 Array.Copy(array, ind, k, v, a-ind);
                 array = k;
@@ -114,7 +114,7 @@ namespace Task_1
         public bool CtrlCCtrlV(datatype item, int v)
         {
             if (v >= size) { throw new IndexOutOfRangeException(); }
-            datatype[] k = new datatype[size];
+            T[] k = new T[size];
             int length = k.Length;
             Array.Copy(array, 0, k, 0, v);
             k[v] = item;
@@ -123,7 +123,7 @@ namespace Task_1
                 if (k.Length - (a + 1) < 0)
                 {
                     PlusSize();
-                    datatype[] t = new datatype[size];
+                    T[] t = new T[size];
                     for (int j = 0; j < k.Length; j++) 
                     { 
                         t[j] = k[j]; 
@@ -147,7 +147,7 @@ namespace Task_1
         { return array.Length; }
 
         //13. Инициализируем динамический массив
-        public datatype this[int i]
+        public T this[int i]
         { get { return array[i]; } set { array[i] = value; } }
     }
 }
